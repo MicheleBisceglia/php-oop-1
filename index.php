@@ -30,7 +30,7 @@ class Movie
       $valutationSum += $valutation;
     }
     $avgValutation = $valutationSum / count($this->valutation);
-      return $avgValutation;
+      return ceil($avgValutation);
     }
 }
 
@@ -62,15 +62,35 @@ $movies[] = $film3;
 ?>
 
 <!-- Stampo il risultato nella pagina-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <title>Document</title>
+</head>
+<body class="bg-dark w-100">
+  <h1 class="text-white text-center my-5">Film consigliati</h1>
+  <main class="w-75 mx-auto d-flex">
+    <?php foreach ($movies as $Movie) { ?>
+    <div class="card w-25 mx-auto text-center m-5">
+      <h4>
+        <?php echo $Movie->name; ?>
+      </h4>
+      <p>
+        <?php echo $Movie->language; ?>
+      </p>
+      <p>
+        Valutazione media: <?php echo $Movie->getAveragevalutation(); ?>
+      </p>
+    </div>
+    <?php } ?>
+  </main>
+</body>
+</html>
 
-<?php foreach ($movies as $Movie) { ?>
-  <h4>
-   <?php echo $Movie->name; ?>
-  </h4>
-  <p>
-    <?php echo $Movie->language; ?>
-  </p>
-  <p>
-    Valutazione media: <?php echo $Movie->getAveragevalutation(); ?>
-  </p>
-<?php } ?>
+
+
+
